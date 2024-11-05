@@ -38,7 +38,7 @@ const Footer = () => {
           Copyright © 2024 Mohammad Abbas
         </p>
 
-        <div className="flex items-center md:gap-3 gap-6">
+        <div className="flex items-center md:gap-3 mt-5 sm:mt-0 gap-6">
           {socialMedia.map((info) => (
             <Link
               href={`${info?.link}`}
