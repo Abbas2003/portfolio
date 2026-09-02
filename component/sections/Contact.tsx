@@ -51,7 +51,7 @@ export default function Contact() {
   };
 
   return (
-    <div ref={ref} className="w-full h-full flex items-center max-md:flex-col max-md:justify-center px-8 md:px-16 relative">
+    <div ref={ref} className="w-full h-full flex items-center max-md:flex-col max-md:justify-center relative">
       {/* Decorative background */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -69,7 +69,7 @@ export default function Contact() {
         HELLO
       </motion.div>
 
-      <div className="w-full max-w-5xl flex gap-16 max-md:flex-col relative z-10">
+      <div className="w-full max-w-5xl flex gap-16 max-md:gap-10 max-md:flex-col relative z-10">
         {/* Left - Info */}
         <div className="flex-1">
           <motion.p
@@ -152,7 +152,7 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -3 }}
-                className="group flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-medium transition-all duration-300"
+                className="group flex items-center gap-2 px-4 py-3 rounded-full text-xs font-medium transition-all duration-300"
                 style={{
                   fontFamily: "var(--font-mono)",
                   border: "1px solid var(--color-border)",

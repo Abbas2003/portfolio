@@ -28,6 +28,8 @@ export default function CustomCursor() {
   }, []);
 
   useEffect(() => {
+    if (typeof window === "undefined" || window.innerWidth <= 768) return;
+
     const cursor = cursorRef.current;
     const trail = trailRef.current;
     if (!cursor || !trail) return;
@@ -40,7 +42,6 @@ export default function CustomCursor() {
       cursor.style.left = `${mousePos.current.x}px`;
       cursor.style.top = `${mousePos.current.y}px`;
 
-      // Trail follows with easing
       trailPos.current.x += (mousePos.current.x - trailPos.current.x) * 0.15;
       trailPos.current.y += (mousePos.current.y - trailPos.current.y) * 0.15;
       trail.style.left = `${trailPos.current.x}px`;
@@ -52,10 +53,8 @@ export default function CustomCursor() {
     document.addEventListener("mousemove", onMouseMove);
     rafRef.current = requestAnimationFrame(animate);
 
-    // Initial setup
     updateInteractives();
 
-    // Watch for DOM changes to re-bind interactives
     const observer = new MutationObserver(() => {
       updateInteractives();
     });

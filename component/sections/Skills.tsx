@@ -81,7 +81,7 @@ export default function Skills() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <div ref={ref} className="w-full h-full flex items-center max-md:flex-col max-md:justify-center px-8 md:px-16">
+    <div ref={ref} className="w-full h-full flex items-center max-md:flex-col max-md:justify-center">
       <div className="w-full max-w-6xl">
         <motion.p
           custom={0}
@@ -117,7 +117,7 @@ export default function Skills() {
                 y: -4,
                 transition: { duration: 0.3, ease: [0.23, 1, 0.32, 1] as [number, number, number, number] },
               }}
-              className={`group p-6 rounded-2xl cursor-default transition-shadow duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] ${
+              className={`group p-6 max-md:p-4 rounded-2xl cursor-default transition-shadow duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] ${
                 category.size === "large" ? "lg:row-span-1" : ""
               }`}
               style={{

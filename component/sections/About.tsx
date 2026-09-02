@@ -64,7 +64,7 @@ export default function About() {
   return (
     <div
       ref={ref}
-      className="w-full h-full flex items-center max-md:flex-col max-md:justify-center px-8 md:px-16 relative"
+      className="w-full h-full flex items-center max-md:flex-col max-md:justify-center relative"
     >
       {/* Decorative grid pattern */}
       <div

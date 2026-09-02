@@ -114,7 +114,7 @@ body::before {
     width: 100%;
     height: auto;
     min-height: auto;
-    padding: 3rem 1.5rem;
+    padding: 2rem 1.25rem;
   }
 
   .section-panel-scrollable {
@@ -210,7 +210,7 @@ body::before {
 @media (max-width: 768px) {
   .timeline-line,
   .timeline-line-progress {
-    left: 20px;
+    left: 16px;
   }
 }
 

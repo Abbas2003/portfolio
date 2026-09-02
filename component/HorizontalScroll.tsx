@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import Navigation from "./Navigation";
+import MobileNav from "./MobileNav";
 
 const sections = ["hero", "about", "skills", "projects", "experience", "contact"];
 const scrollableSections = ["projects", "experience"];
@@ -25,7 +26,10 @@ export default function HorizontalScroll({ children }: { children: React.ReactNo
 
       if (isMobile) {
         const el = document.getElementById(sections[clamped]);
-        el?.scrollIntoView({ behavior: "smooth" });
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          setActiveSection(clamped);
+        }
       } else {
         const container = containerRef.current;
         if (container && !isScrolling.current) {
@@ -44,7 +48,7 @@ export default function HorizontalScroll({ children }: { children: React.ReactNo
     [isMobile]
   );
 
-  // Wheel handler for horizontal scroll
+  // Wheel handler for horizontal scroll (desktop only)
   useEffect(() => {
     if (isMobile) return;
 
@@ -57,7 +61,6 @@ export default function HorizontalScroll({ children }: { children: React.ReactNo
       const currentSectionKey = sections[activeSection];
       const isCurrentScrollable = scrollableSections.includes(currentSectionKey);
 
-      // For scrollable sections, check if we're at scroll boundaries
       if (isCurrentScrollable) {
         const sectionEl = container.children[activeSection] as HTMLElement;
         if (sectionEl) {
@@ -65,9 +68,8 @@ export default function HorizontalScroll({ children }: { children: React.ReactNo
           const atTop = scrollTop <= 0;
           const atBottom = scrollTop + clientHeight >= scrollHeight - 2;
 
-          // If not at boundary, allow native vertical scroll
           if ((e.deltaY < 0 && !atTop) || (e.deltaY > 0 && !atBottom)) {
-            return; // Let the section scroll vertically
+            return;
           }
         }
       }
@@ -112,7 +114,7 @@ export default function HorizontalScroll({ children }: { children: React.ReactNo
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [activeSection, scrollToSection]);
 
-  // Sync active section on manual scroll
+  // Sync active section on scroll — desktop (scrollLeft)
   useEffect(() => {
     if (isMobile) return;
 
@@ -131,6 +133,32 @@ export default function HorizontalScroll({ children }: { children: React.ReactNo
     return () => container.removeEventListener("scroll", handleScroll);
   }, [isMobile]);
 
+  // Sync active section on scroll — mobile (IntersectionObserver)
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const observers: IntersectionObserver[] = [];
+
+    sections.forEach((section, i) => {
+      const el = document.getElementById(section);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.4) {
+            setActiveSection(i);
+          }
+        },
+        { threshold: 0.4 }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, [isMobile]);
+
   return (
     <>
       <Navigation
@@ -139,13 +167,26 @@ export default function HorizontalScroll({ children }: { children: React.ReactNo
         onNavigate={scrollToSection}
       />
 
+      <MobileNav
+        sections={sections}
+        activeSection={activeSection}
+        onNavigate={scrollToSection}
+      />
+
       {isMobile ? (
         <div>
-          {sections.map((section, i) => (
-            <div key={section} id={section}>
-              {Array.isArray(children) ? children[i] : children}
-            </div>
-          ))}
+          {sections.map((section, i) => {
+            const isScrollable = scrollableSections.includes(section);
+            return (
+              <div
+                key={section}
+                id={section}
+                className={`section-panel ${isScrollable ? "section-panel-scrollable" : ""}`}
+              >
+                {Array.isArray(children) ? children[i] : children}
+              </div>
+            );
+          })}
         </div>
       ) : (
         <div

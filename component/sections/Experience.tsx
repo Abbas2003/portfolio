@@ -61,7 +61,7 @@ export default function Experience() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <div ref={ref} className="w-full h-full max-md:flex-col max-md:justify-center px-8 md:px-16 py-4 max-md:py-0">
+    <div ref={ref} className="w-full h-full max-md:flex-col max-md:justify-center py-4 max-md:py-0">
       <div className="w-full max-w-4xl">
         <motion.p
           custom={0}
@@ -108,9 +108,9 @@ export default function Experience() {
               } max-md:flex-row`}
             >
               {/* Timeline dot */}
-              <div className="absolute left-[50%] -translate-x-1/2 z-10 max-md:left-[20px]">
+              <div className="absolute left-[50%] -translate-x-1/2 z-10 max-md:left-[16px]">
                 <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                  className={`w-10 h-10 max-md:w-8 max-md:h-8 rounded-full flex items-center justify-center ${
                     exp.current ? "" : ""
                   }`}
                   style={{
@@ -128,12 +128,12 @@ export default function Experience() {
 
               {/* Content */}
               <div
-                className={`w-[calc(50%-40px)] max-md:w-full max-md:ml-14 ${
+                className={`w-[calc(50%-40px)] max-md:w-full max-md:ml-12 ${
                   i % 2 === 0 ? "md:text-right md:pr-10" : "md:text-left md:pl-10"
                 }`}
               >
                 <div
-                  className={`p-6 rounded-2xl transition-all duration-300 ${
+                  className={`p-6 max-md:p-4 rounded-2xl transition-all duration-300 ${
                     exp.current ? "" : ""
                   }`}
                   style={{

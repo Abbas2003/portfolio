@@ -77,7 +77,7 @@ export default function Hero() {
         />
       </motion.div>
 
-      <div className="w-full flex items-center gap-12 max-md:flex-col px-8 md:px-16 relative z-10">
+      <div className="w-full flex items-center gap-12 max-md:flex-col relative z-10">
         {/* Left content */}
         <div className="flex-1 max-w-2xl">
           {/* Name */}
@@ -237,15 +237,15 @@ export default function Hero() {
           initial={{ opacity: 0, x: 40, rotate: 3 }}
           animate={{ opacity: 1, x: 0, rotate: 2 }}
           transition={{ delay: 1, duration: 1, ease: [0.23, 1, 0.32, 1] as [number, number, number, number] }}
-          className="flex-shrink-0 max-md:hidden"
+          className="flex-shrink-0 max-md:mx-auto max-md:mt-8"
         >
-          <div className="image-hacker relative" style={{ width: "320px", height: "400px" }}>
+          <div className="image-hacker relative w-full max-w-[200px] md:max-w-none md:w-[320px] aspect-[3/4]">
             <Image
               src="/my-pix/image-3.jpeg"
               alt="Muhammad Abbas"
               fill
               className="object-cover"
-              sizes="320px"
+              sizes="(max-width: 768px) 200px, 320px"
               preload
             />
             {/* Scan line overlay effect */}

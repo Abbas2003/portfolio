@@ -59,7 +59,7 @@ export default function ThemeToggle() {
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 2.5, duration: 0.5 }}
-      className="fixed top-6 right-8 z-50 p-3 rounded-full border border-[var(--color-border)] bg-[var(--color-card)] backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:border-[var(--color-accent)] max-md:top-4 max-md:right-4 max-md:p-2.5 cursor-pointer"
+      className="fixed top-6 right-8 z-50 p-3 rounded-full border border-[var(--color-border)] bg-[var(--color-card)] backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:border-[var(--color-accent)] max-md:top-4 max-md:right-4 max-md:p-3 cursor-pointer"
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
     >
       <AnimatePresence mode="wait">

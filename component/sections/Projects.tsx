@@ -104,7 +104,7 @@ export default function Projects() {
   const rest = filtered.filter((p) => !p.featured);
 
   return (
-    <div ref={ref} className="w-full h-full max-md:flex-col max-md:justify-center px-8 md:px-16 py-4 max-md:py-0">
+    <div ref={ref} className="w-full h-full max-md:flex-col max-md:justify-center py-4 max-md:py-0">
       <div className="w-full max-w-6xl">
         <motion.p
           custom={0}
@@ -133,7 +133,7 @@ export default function Projects() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={fadeUp}
-          className="flex gap-2 mb-10"
+          className="flex flex-wrap gap-2 mb-6"
         >
           {categories.map((cat) => (
             <motion.button
@@ -141,7 +141,7 @@ export default function Projects() {
               onClick={() => setFilter(cat.value)}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className={`px-5 py-2.5 rounded-full text-xs font-medium transition-all duration-300 ${
+              className={`px-5 py-3 rounded-full text-xs font-medium transition-all duration-300 ${
                 filter === cat.value
                   ? "text-background"
                   : "text-muted hover:text-foreground"
@@ -178,7 +178,7 @@ export default function Projects() {
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3 }}
-                className="group p-8 rounded-2xl cursor-pointer transition-shadow duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex flex-col md:flex-row gap-8"
+                className="group p-8 max-md:p-5 rounded-2xl cursor-pointer transition-shadow duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex flex-col md:flex-row gap-8 max-md:gap-5"
                 style={{
                   background: "var(--color-card)",
                   border: "1px solid var(--color-border)",
@@ -240,10 +240,10 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
-                  <div className="flex gap-3">
+                   <div className="flex gap-3">
                     <a
                       href="#"
-                      className="flex items-center gap-1.5 text-xs font-medium text-muted hover:text-foreground transition-colors"
+                      className="flex items-center gap-1.5 text-xs font-medium text-muted hover:text-foreground transition-colors p-2 -m-2 rounded-lg"
                       style={{ fontFamily: "var(--font-mono)" }}
                       data-cursor-hover
                     >
@@ -251,7 +251,7 @@ export default function Projects() {
                     </a>
                     <a
                       href="#"
-                      className="flex items-center gap-1.5 text-xs font-medium text-muted hover:text-foreground transition-colors"
+                      className="flex items-center gap-1.5 text-xs font-medium text-muted hover:text-foreground transition-colors p-2 -m-2 rounded-lg"
                       style={{ fontFamily: "var(--font-mono)" }}
                       data-cursor-hover
                     >
