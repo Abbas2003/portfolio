@@ -1,5 +1,5 @@
-"use client";
-
+import { readFile } from "fs/promises";
+import { join } from "path";
 import ThemeToggle from "@/component/ThemeToggle";
 import HorizontalScroll from "@/component/HorizontalScroll";
 import CustomCursor from "@/component/CustomCursor";
@@ -11,7 +11,15 @@ import Projects from "@/component/sections/Projects";
 import Experience from "@/component/sections/Experience";
 import Contact from "@/component/sections/Contact";
 
-export default function Home() {
+async function getPortfolioData() {
+  const dataPath = join(process.cwd(), "data", "portfolio.json");
+  const rawData = await readFile(dataPath, "utf-8");
+  return JSON.parse(rawData);
+}
+
+export default async function Home() {
+  const data = await getPortfolioData();
+
   return (
     <>
       <Preloader />
@@ -53,12 +61,12 @@ export default function Home() {
       </div>
 
       <HorizontalScroll>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
+        <Hero data={data.hero} />
+        <About data={data.about} />
+        <Skills data={data.skills} />
+        <Projects data={data.projects} />
+        <Experience data={data.experience} />
+        <Contact data={data.contact} />
       </HorizontalScroll>
     </>
   );

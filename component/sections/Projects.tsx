@@ -6,52 +6,76 @@ import { ExternalLink, Code2, ArrowUpRight } from "lucide-react";
 
 const projects = [
   {
+    id: "proj_1",
     title: "AI Code Reviewer",
     description:
       "An AI-powered tool that automatically reviews pull requests, suggests improvements, and detects potential security vulnerabilities using LLMs.",
     tags: ["Python", "OpenAI", "GitHub API", "FastAPI"],
     category: "ai",
     featured: true,
+    image: "",
+    codeUrl: "",
+    liveUrl: "",
   },
   {
+    id: "proj_2",
     title: "SecureChat",
     description:
       "End-to-end encrypted messaging platform with zero-knowledge architecture and forward secrecy.",
     tags: ["React", "Node.js", "WebSocket", "Crypto"],
     category: "security",
     featured: false,
+    image: "",
+    codeUrl: "",
+    liveUrl: "",
   },
   {
+    id: "proj_3",
     title: "Nexus SaaS Platform",
     description:
       "Multi-tenant SaaS application with subscription billing, RBAC, and real-time analytics.",
     tags: ["Next.js", "PostgreSQL", "Stripe", "Tailwind"],
     category: "fullstack",
     featured: false,
+    image: "",
+    codeUrl: "",
+    liveUrl: "",
   },
   {
+    id: "proj_4",
     title: "VulnScanner Pro",
     description:
       "Automated vulnerability scanner that identifies OWASP Top 10 security flaws.",
     tags: ["Python", "BeautifulSoup", "Nmap", "Docker"],
     category: "security",
     featured: false,
+    image: "",
+    codeUrl: "",
+    liveUrl: "",
   },
   {
+    id: "proj_5",
     title: "AI Content Generator",
     description:
       "Content generation platform using fine-tuned language models for marketing copy and blog posts.",
     tags: ["Next.js", "LangChain", "RAG", "Vector DB"],
     category: "ai",
     featured: false,
+    image: "",
+    codeUrl: "",
+    liveUrl: "",
   },
   {
+    id: "proj_6",
     title: "CloudDeploy",
     description:
       "One-click deployment platform with auto-scaling, monitoring, and CI/CD integration.",
     tags: ["React", "Kubernetes", "Docker", "AWS"],
     category: "fullstack",
     featured: false,
+    image: "",
+    codeUrl: "",
+    liveUrl: "",
   },
 ];
 
@@ -90,15 +114,33 @@ const cardVariants = {
   },
 };
 
-export default function Projects() {
+interface ProjectsProps {
+  data?: {
+    heading: string;
+    items: {
+      id: string;
+      title: string;
+      description: string;
+      tags: string[];
+      category: string;
+      featured: boolean;
+      image: string;
+      codeUrl: string;
+      liveUrl: string;
+    }[];
+  };
+}
+
+export default function Projects({ data }: ProjectsProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [filter, setFilter] = useState("all");
 
+  const projectsData = data?.items || projects;
   const filtered =
     filter === "all"
-      ? projects
-      : projects.filter((p) => p.category === filter);
+      ? projectsData
+      : projectsData.filter((p) => p.category === filter);
 
   const featured = filtered.find((p) => p.featured);
   const rest = filtered.filter((p) => !p.featured);
@@ -124,7 +166,7 @@ export default function Projects() {
           className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-[0.9]"
           style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
         >
-          Selected Projects
+          {data?.heading || "Selected Projects"}
         </motion.h2>
 
         {/* Filter pills */}
@@ -242,7 +284,7 @@ export default function Projects() {
                   </div>
                    <div className="flex gap-3">
                     <a
-                      href="#"
+                      href={featured.codeUrl || "#"}
                       className="flex items-center gap-1.5 text-xs font-medium text-muted hover:text-foreground transition-colors p-2 -m-2 rounded-lg"
                       style={{ fontFamily: "var(--font-mono)" }}
                       data-cursor-hover
@@ -250,7 +292,7 @@ export default function Projects() {
                       <Code2 size={14} /> Code
                     </a>
                     <a
-                      href="#"
+                      href={featured.liveUrl || "#"}
                       className="flex items-center gap-1.5 text-xs font-medium text-muted hover:text-foreground transition-colors p-2 -m-2 rounded-lg"
                       style={{ fontFamily: "var(--font-mono)" }}
                       data-cursor-hover
@@ -312,10 +354,10 @@ export default function Projects() {
                       {project.title}
                     </h3>
                     <div className="flex gap-2">
-                      <a href="#" className="text-muted hover:text-foreground transition-colors" data-cursor-hover>
+                      <a href={project.codeUrl || "#"} className="text-muted hover:text-foreground transition-colors" data-cursor-hover>
                         <Code2 size={14} />
                       </a>
-                      <a href="#" className="text-muted hover:text-foreground transition-colors" data-cursor-hover>
+                      <a href={project.liveUrl || "#"} className="text-muted hover:text-foreground transition-colors" data-cursor-hover>
                         <ExternalLink size={14} />
                       </a>
                     </div>

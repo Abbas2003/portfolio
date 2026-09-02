@@ -57,7 +57,16 @@ const fadeUp = {
   }),
 };
 
-export default function About() {
+interface AboutProps {
+  data?: {
+    heading: string[];
+    paragraphs: string[];
+    image: string;
+    stats: { value: number; suffix: string; label: string }[];
+  };
+}
+
+export default function About({ data }: AboutProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -93,9 +102,9 @@ export default function About() {
             className="text-4xl md:text-5xl lg:text-6xl mb-3 leading-[0.9]"
             style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
           >
-            Code. Intelligence.
+            {data?.heading?.[0] || "Code. Intelligence."}
             <br />
-            <span className="gradient-text">Security.</span>
+            <span className="gradient-text">{data?.heading?.[1] || "Security."}</span>
           </motion.h2>
 
           <motion.p
@@ -105,9 +114,7 @@ export default function About() {
             variants={fadeUp}
             className="text-muted leading-[1.7] mb-3 text-[15px]"
           >
-            I&apos;m a full stack developer with deep expertise in AI engineering and
-            cybersecurity. I build scalable, intelligent applications while ensuring
-            they stand resilient against modern threats.
+            {data?.paragraphs?.[0] || "I'm a full stack developer with deep expertise in AI engineering and cybersecurity. I build scalable, intelligent applications while ensuring they stand resilient against modern threats."}
           </motion.p>
 
           <motion.p
@@ -117,9 +124,7 @@ export default function About() {
             variants={fadeUp}
             className="text-muted leading-[1.7] mb-5 text-[15px]"
           >
-            From architecting microservices to training neural networks, from
-            penetration testing to building AI-powered tools — I thrive at the
-            edges where disciplines collide.
+            {data?.paragraphs?.[1] || "From architecting microservices to training neural networks, from penetration testing to building AI-powered tools — I thrive at the edges where disciplines collide."}
           </motion.p>
 
           {/* Inline image */}
@@ -132,7 +137,7 @@ export default function About() {
           >
             <div className="image-artist relative" style={{ width: "100%", maxWidth: "480px", height: "160px" }}>
               <Image
-                src="/my-pix/image-2.jpeg"
+                src={data?.image || "/my-pix/image-2.jpeg"}
                 alt="Workspace"
                 fill
                 className="object-cover"
@@ -180,40 +185,49 @@ export default function About() {
 
         {/* Right - Stats */}
         <div className="flex-2 grid grid-cols-2 gap-2 max-w-xs">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              custom={2 + i * 0.5}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={fadeUp}
-              whileHover={{ y: -4, transition: { duration: 0.3 } }}
-              className="group p-3 rounded-xl cursor-default transition-all duration-300"
-              style={{
-                background: "var(--color-card)",
-                border: "1px solid var(--color-border)",
-              }}
-            >
-              <stat.icon
-                size={16}
-                className="mb-2 transition-colors duration-300 group-hover:text-accent"
-                style={{ color: "var(--color-muted)" }}
-              />
-              <div
-                className="text-xl md:text-2xl font-bold mb-0.5"
-                style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
+          {(data?.stats || stats).map((stat, i) => {
+            const iconMap: Record<string, React.ComponentType<{ size: number; className?: string; style?: React.CSSProperties }>> = {
+              "Years Experience": Code,
+              "Projects Delivered": Shield,
+              "AI Models Built": Brain,
+              "Vulns Reported": Zap,
+            };
+            const IconComponent = iconMap[stat.label] || Code;
+            return (
+              <motion.div
+                key={stat.label}
+                custom={2 + i * 0.5}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+                variants={fadeUp}
+                whileHover={{ y: -4, transition: { duration: 0.3 } }}
+                className="group p-3 rounded-xl cursor-default transition-all duration-300"
+                style={{
+                  background: "var(--color-card)",
+                  border: "1px solid var(--color-border)",
+                }}
               >
-                <CountUp target={stat.value} delay={0.5 + i * 0.15} />
-                <span className="gradient-text">{stat.suffix}</span>
-              </div>
-              <p
-                className="text-[10px] uppercase tracking-wider text-muted"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                {stat.label}
-              </p>
-            </motion.div>
-          ))}
+                <IconComponent
+                  size={16}
+                  className="mb-2 transition-colors duration-300 group-hover:text-accent"
+                  style={{ color: "var(--color-muted)" }}
+                />
+                <div
+                  className="text-xl md:text-2xl font-bold mb-0.5"
+                  style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
+                >
+                  <CountUp target={stat.value} delay={0.5 + i * 0.15} />
+                  <span className="gradient-text">{stat.suffix}</span>
+                </div>
+                <p
+                  className="text-[10px] uppercase tracking-wider text-muted"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                >
+                  {stat.label}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </div>

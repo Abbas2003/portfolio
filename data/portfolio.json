@@ -1,0 +1,183 @@
+{
+  "hero": {
+    "name": "Muhammad Abbas",
+    "role": "Full Stack Developer / AI Engineer / Ethical Hacker",
+    "headline": ["Building", "the future", "& breaking it"],
+    "description": "I craft high-performance web applications, engineer intelligent AI solutions, and break systems to make them stronger.",
+    "image": "/my-pix/image-3.jpeg",
+    "ctaPrimary": { "label": "View Projects", "link": "#projects" },
+    "ctaSecondary": { "label": "Get in Touch", "link": "#contact" }
+  },
+  "about": {
+    "heading": ["Code. Intelligence.", "Security."],
+    "paragraphs": [
+      "I'm a full stack developer with deep expertise in AI engineering and cybersecurity. I build scalable, intelligent applications while ensuring they stand resilient against modern threats.",
+      "From architecting microservices to training neural networks, from penetration testing to building AI-powered tools — I thrive at the edges where disciplines collide."
+    ],
+    "image": "/my-pix/image-2.jpeg",
+    "stats": [
+      { "value": 5, "suffix": "+", "label": "Years Experience" },
+      { "value": 50, "suffix": "+", "label": "Projects Delivered" },
+      { "value": 10, "suffix": "+", "label": "AI Models Built" },
+      { "value": 20, "suffix": "+", "label": "Vulns Reported" }
+    ]
+  },
+  "skills": {
+    "heading": "Skills & Technologies",
+    "categories": [
+      {
+        "title": "Frontend",
+        "color": "#ff4d00",
+        "icon": "Code",
+        "skills": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js", "HTML/CSS", "Framer Motion", "Redux"]
+      },
+      {
+        "title": "AI / ML",
+        "color": "#6b3fa0",
+        "icon": "Brain",
+        "skills": ["TensorFlow", "PyTorch", "LangChain", "OpenAI API", "Hugging Face", "Scikit-learn", "Pandas", "RAG"]
+      },
+      {
+        "title": "Backend",
+        "color": "#0066cc",
+        "icon": "Server",
+        "skills": ["Node.js", "Python", "PostgreSQL", "MongoDB", "Express", "FastAPI", "Redis", "GraphQL"]
+      },
+      {
+        "title": "Security",
+        "color": "#cc3333",
+        "icon": "Shield",
+        "skills": ["Pen Testing", "Bug Bounty", "OWASP", "Kali Linux", "Burp Suite", "Nmap"]
+      },
+      {
+        "title": "DevOps",
+        "color": "#22883e",
+        "icon": "Wrench",
+        "skills": ["Docker", "Kubernetes", "AWS", "CI/CD", "Git", "Linux", "Terraform"]
+      }
+    ]
+  },
+  "projects": {
+    "heading": "Selected Projects",
+    "items": [
+      {
+        "id": "proj_1",
+        "title": "AI Code Reviewer",
+        "description": "An AI-powered tool that automatically reviews pull requests, suggests improvements, and detects potential security vulnerabilities using LLMs.",
+        "tags": ["Python", "OpenAI", "GitHub API", "FastAPI"],
+        "category": "ai",
+        "featured": true,
+        "image": "",
+        "codeUrl": "",
+        "liveUrl": ""
+      },
+      {
+        "id": "proj_2",
+        "title": "SecureChat",
+        "description": "End-to-end encrypted messaging platform with zero-knowledge architecture and forward secrecy.",
+        "tags": ["React", "Node.js", "WebSocket", "Crypto"],
+        "category": "security",
+        "featured": false,
+        "image": "",
+        "codeUrl": "",
+        "liveUrl": ""
+      },
+      {
+        "id": "proj_3",
+        "title": "Nexus SaaS Platform",
+        "description": "Multi-tenant SaaS application with subscription billing, RBAC, and real-time analytics.",
+        "tags": ["Next.js", "PostgreSQL", "Stripe", "Tailwind"],
+        "category": "fullstack",
+        "featured": false,
+        "image": "",
+        "codeUrl": "",
+        "liveUrl": ""
+      },
+      {
+        "id": "proj_4",
+        "title": "VulnScanner Pro",
+        "description": "Automated vulnerability scanner that identifies OWASP Top 10 security flaws.",
+        "tags": ["Python", "BeautifulSoup", "Nmap", "Docker"],
+        "category": "security",
+        "featured": false,
+        "image": "",
+        "codeUrl": "",
+        "liveUrl": ""
+      },
+      {
+        "id": "proj_5",
+        "title": "AI Content Generator",
+        "description": "Content generation platform using fine-tuned language models for marketing copy and blog posts.",
+        "tags": ["Next.js", "LangChain", "RAG", "Vector DB"],
+        "category": "ai",
+        "featured": false,
+        "image": "",
+        "codeUrl": "",
+        "liveUrl": ""
+      },
+      {
+        "id": "proj_6",
+        "title": "CloudDeploy",
+        "description": "One-click deployment platform with auto-scaling, monitoring, and CI/CD integration.",
+        "tags": ["React", "Kubernetes", "Docker", "AWS"],
+        "category": "fullstack",
+        "featured": false,
+        "image": "",
+        "codeUrl": "",
+        "liveUrl": ""
+      }
+    ]
+  },
+  "experience": {
+    "heading": "Work Timeline",
+    "items": [
+      {
+        "id": "exp_1",
+        "role": "Senior Full Stack Developer",
+        "company": "TechCorp Inc.",
+        "period": "2023 — Present",
+        "current": true,
+        "description": "Leading development of microservices architecture, implementing CI/CD pipelines, and mentoring junior developers on security best practices.",
+        "tags": ["React", "Node.js", "AWS", "Docker"]
+      },
+      {
+        "id": "exp_2",
+        "role": "AI Engineer",
+        "company": "AI Labs",
+        "period": "2022 — 2023",
+        "current": false,
+        "description": "Designed and deployed machine learning models for NLP, built RAG pipelines, and integrated LLMs into production applications.",
+        "tags": ["Python", "PyTorch", "LangChain", "OpenAI"]
+      },
+      {
+        "id": "exp_3",
+        "role": "Security Consultant",
+        "company": "CyberShield",
+        "period": "2021 — 2022",
+        "current": false,
+        "description": "Conducted penetration testing for enterprise clients, discovered critical vulnerabilities, and developed automated security scanning tools.",
+        "tags": ["Kali Linux", "Burp Suite", "OWASP", "Python"]
+      },
+      {
+        "id": "exp_4",
+        "role": "Junior Developer",
+        "company": "StartUp Co.",
+        "period": "2020 — 2021",
+        "current": false,
+        "description": "Built responsive web applications, contributed to open-source projects, and learned the fundamentals of secure coding practices.",
+        "tags": ["React", "TypeScript", "PostgreSQL", "Git"]
+      }
+    ]
+  },
+  "contact": {
+    "heading": ["Let's Work", "Together"],
+    "description": "Have a project in mind, need a security audit, or want to collaborate on AI research? I'd love to hear from you.",
+    "email": "hello@yourdomain.com",
+    "location": "Available Worldwide / Remote",
+    "social": [
+      { "name": "GitHub", "url": "https://github.com/" },
+      { "name": "LinkedIn", "url": "https://linkedin.com/" },
+      { "name": "X / Twitter", "url": "https://x.com/" }
+    ]
+  }
+}

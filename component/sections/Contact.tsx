@@ -4,7 +4,17 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Send, Mail, MapPin, ArrowUpRight } from "lucide-react";
 
-export default function Contact() {
+interface ContactProps {
+  data?: {
+    heading: string[];
+    description: string;
+    email: string;
+    location: string;
+    social: { name: string; url: string }[];
+  };
+}
+
+export default function Contact({ data }: ContactProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [formState, setFormState] = useState({
@@ -90,9 +100,9 @@ export default function Contact() {
             className="text-4xl md:text-5xl lg:text-6xl mb-5 leading-[0.9]"
             style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
           >
-            Let&apos;s Work
+            {data?.heading?.[0] || "Let's Work"}
             <br />
-            <span className="gradient-text">Together</span>
+            <span className="gradient-text">{data?.heading?.[1] || "Together"}</span>
           </motion.h2>
 
           <motion.p
@@ -102,8 +112,7 @@ export default function Contact() {
             variants={fadeUp}
             className="text-muted leading-[1.7] mb-8 max-w-md text-base"
           >
-            Have a project in mind, need a security audit, or want to collaborate
-            on AI research? I&apos;d love to hear from you.
+            {data?.description || "Have a project in mind, need a security audit, or want to collaborate on AI research? I'd love to hear from you."}
           </motion.p>
 
           <motion.div
@@ -120,7 +129,7 @@ export default function Contact() {
               >
                 <Mail size={16} style={{ color: "var(--color-accent)" }} />
               </div>
-              <span>hello@yourdomain.com</span>
+              <span>{data?.email || "hello@yourdomain.com"}</span>
             </div>
             <div className="flex items-center gap-3 text-sm text-muted">
               <div
@@ -129,7 +138,7 @@ export default function Contact() {
               >
                 <MapPin size={16} style={{ color: "var(--color-accent)" }} />
               </div>
-              <span>Available Worldwide / Remote</span>
+              <span>{data?.location || "Available Worldwide / Remote"}</span>
             </div>
           </motion.div>
 
@@ -141,14 +150,14 @@ export default function Contact() {
             variants={fadeUp}
             className="flex gap-3"
           >
-            {[
-              { name: "GitHub", href: "https://github.com/" },
-              { name: "LinkedIn", href: "https://linkedin.com/" },
-              { name: "X / Twitter", href: "https://x.com/" },
-            ].map((social) => (
+            {(data?.social || [
+              { name: "GitHub", url: "https://github.com/" },
+              { name: "LinkedIn", url: "https://linkedin.com/" },
+              { name: "X / Twitter", url: "https://x.com/" },
+            ]).map((social) => (
               <motion.a
                 key={social.name}
-                href={social.href}
+                href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -3 }}

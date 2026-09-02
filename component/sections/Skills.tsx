@@ -13,7 +13,7 @@ import {
 const skillCategories = [
   {
     title: "Frontend",
-    icon: Code,
+    icon: "Code",
     size: "large",
     color: "#ff4d00",
     skills: [
@@ -23,7 +23,7 @@ const skillCategories = [
   },
   {
     title: "AI / ML",
-    icon: Brain,
+    icon: "Brain",
     size: "large",
     color: "#6b3fa0",
     skills: [
@@ -33,7 +33,7 @@ const skillCategories = [
   },
   {
     title: "Backend",
-    icon: Server,
+    icon: "Server",
     size: "small",
     color: "#0066cc",
     skills: [
@@ -43,7 +43,7 @@ const skillCategories = [
   },
   {
     title: "Security",
-    icon: Shield,
+    icon: "Shield",
     size: "small",
     color: "#cc3333",
     skills: [
@@ -53,7 +53,7 @@ const skillCategories = [
   },
   {
     title: "DevOps",
-    icon: Wrench,
+    icon: "Wrench",
     size: "small",
     color: "#22883e",
     skills: [
@@ -76,7 +76,19 @@ const fadeUp = {
   }),
 };
 
-export default function Skills() {
+interface SkillsProps {
+  data?: {
+    heading: string;
+    categories: {
+      title: string;
+      color: string;
+      icon: string;
+      skills: string[];
+    }[];
+  };
+}
+
+export default function Skills({ data }: SkillsProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -101,12 +113,21 @@ export default function Skills() {
           className="text-4xl md:text-5xl lg:text-6xl mb-10 leading-[0.9]"
           style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
         >
-          Skills & Technologies
+          {data?.heading || "Skills & Technologies"}
         </motion.h2>
 
         {/* Bento grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-min">
-          {skillCategories.map((category, catIndex) => (
+          {(data?.categories || skillCategories).map((category, catIndex) => {
+            const iconMap: Record<string, React.ComponentType<{ size: number; style?: React.CSSProperties }>> = {
+              Code,
+              Brain,
+              Server,
+              Shield,
+              Wrench,
+            };
+            const IconComponent = iconMap[category.icon] || Code;
+            return (
             <motion.div
               key={category.title}
               custom={2 + catIndex}
@@ -117,9 +138,7 @@ export default function Skills() {
                 y: -4,
                 transition: { duration: 0.3, ease: [0.23, 1, 0.32, 1] as [number, number, number, number] },
               }}
-              className={`group p-6 max-md:p-4 rounded-2xl cursor-default transition-shadow duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] ${
-                category.size === "large" ? "lg:row-span-1" : ""
-              }`}
+              className="group p-6 max-md:p-4 rounded-2xl cursor-default transition-shadow duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
               style={{
                 background: "var(--color-card)",
                 border: "1px solid var(--color-border)",
@@ -131,7 +150,7 @@ export default function Skills() {
                   className="w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
                   style={{ background: `${category.color}12` }}
                 >
-                  <category.icon size={18} style={{ color: category.color }} />
+                  <IconComponent size={18} style={{ color: category.color }} />
                 </div>
                 <h3
                   className="text-xs font-medium uppercase tracking-wider text-muted"
@@ -167,7 +186,8 @@ export default function Skills() {
                 ))}
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

@@ -1,4 +1,9 @@
 import { NextResponse } from "next/server";
+import { readFile, writeFile } from "fs/promises";
+import { join } from "path";
+import { v4 as uuid } from "uuid";
+
+const MESSAGES_PATH = join(process.cwd(), "data", "messages.json");
 
 export async function POST(request: Request) {
   try {
@@ -12,9 +17,20 @@ export async function POST(request: Request) {
       );
     }
 
-    // TODO: Integrate with your email service (e.g., Resend, SendGrid, Nodemailer)
-    // For now, just log the message
-    console.log("Contact form submission:", { name, email, message });
+    const raw = await readFile(MESSAGES_PATH, "utf-8");
+    const messages = JSON.parse(raw);
+
+    const newMessage = {
+      id: `msg_${uuid().slice(0, 8)}`,
+      name,
+      email,
+      message,
+      read: false,
+      createdAt: new Date().toISOString(),
+    };
+
+    messages.unshift(newMessage);
+    await writeFile(MESSAGES_PATH, JSON.stringify(messages, null, 2), "utf-8");
 
     return NextResponse.json(
       { success: true, message: "Message received" },

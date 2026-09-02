@@ -31,7 +31,19 @@ const fadeUp = {
   }),
 };
 
-export default function Hero() {
+interface HeroProps {
+  data?: {
+    name: string;
+    role: string;
+    headline: string[];
+    description: string;
+    image: string;
+    ctaPrimary: { label: string; link: string };
+    ctaSecondary: { label: string; link: string };
+  };
+}
+
+export default function Hero({ data }: HeroProps) {
   const ref = useRef(null);
 
   return (
@@ -89,7 +101,7 @@ export default function Hero() {
             className="text-foreground text-lg md:text-xl font-medium mb-3"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Muhammad Abbas
+            {data?.name || "Muhammad Abbas"}
           </motion.p>
 
           {/* Role label */}
@@ -100,7 +112,7 @@ export default function Hero() {
             variants={fadeUp}
             className="section-label mb-6"
           >
-            Full Stack Developer / AI Engineer / Ethical Hacker
+            {data?.role || "Full Stack Developer / AI Engineer / Ethical Hacker"}
           </motion.div>
 
           {/* Headline with word reveal */}
@@ -110,7 +122,7 @@ export default function Hero() {
                 className="text-4xl md:text-6xl lg:text-[72px] leading-[0.9] tracking-tight"
                 style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
               >
-                {"Building".split(" ").map((word, i) => (
+                {(data?.headline?.[0] || "Building").split(" ").map((word, i) => (
                   <motion.span
                     key={i}
                     custom={1}
@@ -130,7 +142,7 @@ export default function Hero() {
                 className="text-4xl md:text-6xl lg:text-[72px] leading-[0.9] tracking-tight gradient-text"
                 style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
               >
-                {"the future".split(" ").map((word, i) => (
+                {(data?.headline?.[1] || "the future").split(" ").map((word, i) => (
                   <motion.span
                     key={i}
                     custom={2 + i}
@@ -154,7 +166,7 @@ export default function Hero() {
                   fontWeight: 400,
                 }}
               >
-                {"& breaking it".split(" ").map((word, i) => (
+                {(data?.headline?.[2] || "& breaking it").split(" ").map((word, i) => (
                   <motion.span
                     key={i}
                     custom={4 + i}
@@ -187,8 +199,7 @@ export default function Hero() {
             className="text-muted text-base md:text-lg max-w-md mb-8 leading-[1.7]"
             style={{ fontFamily: "var(--font-sans)" }}
           >
-            I craft high-performance web applications, engineer intelligent AI
-            solutions, and break systems to make them stronger.
+            {data?.description || "I craft high-performance web applications, engineer intelligent AI solutions, and break systems to make them stronger."}
           </motion.p>
 
           {/* CTAs */}
@@ -200,7 +211,7 @@ export default function Hero() {
             className="flex gap-4 items-center"
           >
             <motion.a
-              href="#projects"
+              href={data?.ctaPrimary?.link || "#projects"}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="group px-7 py-3.5 rounded-full text-sm font-medium flex items-center gap-2 transition-colors duration-300"
@@ -210,7 +221,7 @@ export default function Hero() {
                 fontFamily: "var(--font-mono)",
               }}
             >
-              View Projects
+              {data?.ctaPrimary?.label || "View Projects"}
               <ArrowDownRight
                 size={14}
                 className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform -rotate-90"
@@ -218,7 +229,7 @@ export default function Hero() {
             </motion.a>
 
             <motion.a
-              href="#contact"
+              href={data?.ctaSecondary?.link || "#contact"}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="px-7 py-3.5 rounded-full text-sm font-medium border transition-all duration-300 hover:border-foreground"
@@ -227,7 +238,7 @@ export default function Hero() {
                 fontFamily: "var(--font-mono)",
               }}
             >
-              Get in Touch
+              {data?.ctaSecondary?.label || "Get in Touch"}
             </motion.a>
           </motion.div>
         </div>
@@ -241,8 +252,8 @@ export default function Hero() {
         >
           <div className="image-hacker relative w-full max-w-[200px] md:max-w-none md:w-[320px] aspect-[3/4]">
             <Image
-              src="/my-pix/image-3.jpeg"
-              alt="Muhammad Abbas"
+              src={data?.image || "/my-pix/image-3.jpeg"}
+              alt={data?.name || "Muhammad Abbas"}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 200px, 320px"

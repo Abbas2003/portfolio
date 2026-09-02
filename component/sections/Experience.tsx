@@ -56,7 +56,22 @@ const fadeUp = {
   }),
 };
 
-export default function Experience() {
+interface ExperienceProps {
+  data?: {
+    heading: string;
+    items: {
+      id: string;
+      role: string;
+      company: string;
+      period: string;
+      current: boolean;
+      description: string;
+      tags: string[];
+    }[];
+  };
+}
+
+export default function Experience({ data }: ExperienceProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -81,7 +96,7 @@ export default function Experience() {
           className="text-4xl md:text-5xl lg:text-6xl mb-10 leading-[0.9]"
           style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
         >
-          Work Timeline
+          {data?.heading || "Work Timeline"}
         </motion.h2>
 
         <div className="relative">
@@ -96,7 +111,7 @@ export default function Experience() {
             className="timeline-line-progress"
           />
 
-          {experiences.map((exp, i) => (
+          {(data?.items || experiences).map((exp, i) => (
             <motion.div
               key={exp.role}
               custom={2 + i}
