@@ -1,0 +1,9 @@
+PLACEHOLDER - Replace this file with your actual resume.pdf
+
+This file is here to indicate where your CV/resume should be placed.
+
+To use the CV download feature:
+1. Place your resume.pdf file in the public/ directory (replace this file)
+2. Users can then download it from the website via the Download CV button
+
+The download URL is: /api/cv
