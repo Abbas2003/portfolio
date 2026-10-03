@@ -94,7 +94,7 @@ export default function Skills({ data }: SkillsProps) {
 
   return (
     <div ref={ref} className="w-full h-full flex items-center max-md:flex-col max-md:justify-center">
-      <div className="w-full max-w-6xl">
+      <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto">
         <motion.p
           custom={0}
           initial="hidden"
@@ -110,7 +110,7 @@ export default function Skills({ data }: SkillsProps) {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={fadeUp}
-          className="text-4xl md:text-5xl lg:text-6xl mb-10 leading-[0.9]"
+          className="text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl mb-10 leading-[0.9]"
           style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
         >
           {data?.heading || "Skills & Technologies"}

@@ -147,7 +147,7 @@ export default function Projects({ data }: ProjectsProps) {
 
   return (
     <div ref={ref} className="w-full h-full max-md:flex-col max-md:justify-center py-4 max-md:py-0">
-      <div className="w-full max-w-6xl">
+      <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto">
         <motion.p
           custom={0}
           initial="hidden"
@@ -163,7 +163,7 @@ export default function Projects({ data }: ProjectsProps) {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={fadeUp}
-          className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-[0.9]"
+          className="text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl mb-6 leading-[0.9]"
           style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
         >
           {data?.heading || "Selected Projects"}

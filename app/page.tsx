@@ -33,7 +33,7 @@ export default async function Home() {
         <div
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(100px, 15vw, 220px)",
+            fontSize: "clamp(120px, 15vw, 340px)",
             fontWeight: 400,
             lineHeight: 1,
             color: "var(--color-foreground)",
@@ -46,7 +46,7 @@ export default async function Home() {
         <div
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "clamp(12px, 2vw, 22px)",
+            fontSize: "clamp(12px, 2vw, 30px)",
             fontWeight: 500,
             lineHeight: 1,
             color: "var(--color-foreground)",

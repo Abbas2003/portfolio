@@ -70,7 +70,7 @@ export default function Contact({ data }: ContactProps) {
         className="absolute right-20 top-1/2 -translate-y-1/2 select-none pointer-events-none max-md:hidden"
         style={{
           fontFamily: "var(--font-display)",
-          fontSize: "clamp(150px, 20vw, 300px)",
+          fontSize: "clamp(150px, 20vw, 440px)",
           fontWeight: 400,
           lineHeight: 1,
           color: "var(--color-foreground)",
@@ -79,7 +79,7 @@ export default function Contact({ data }: ContactProps) {
         HELLO
       </motion.div>
 
-      <div className="w-full max-w-5xl flex gap-16 max-md:gap-10 max-md:flex-col relative z-10">
+      <div className="w-full max-w-5xl 2xl:max-w-6xl mx-auto flex gap-16 max-md:gap-10 max-md:flex-col relative z-10">
         {/* Left - Info */}
         <div className="flex-1">
           <motion.p
@@ -97,7 +97,7 @@ export default function Contact({ data }: ContactProps) {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="text-4xl md:text-5xl lg:text-6xl mb-5 leading-[0.9]"
+            className="text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl mb-5 leading-[0.9]"
             style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
           >
             {data?.heading?.[0] || "Let's Work"}
@@ -148,7 +148,7 @@ export default function Contact({ data }: ContactProps) {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="flex gap-3"
+            className="flex flex-wrap gap-2 md:gap-3"
           >
             {(data?.social || [
               { name: "GitHub", url: "https://github.com/" },
@@ -161,7 +161,7 @@ export default function Contact({ data }: ContactProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -3 }}
-                className="group flex items-center gap-2 px-4 py-3 rounded-full text-xs font-medium transition-all duration-300"
+                className="group flex items-center gap-2 px-3.5 py-3 md:px-4 rounded-full text-xs font-medium transition-all duration-300"
                 style={{
                   fontFamily: "var(--font-mono)",
                   border: "1px solid var(--color-border)",

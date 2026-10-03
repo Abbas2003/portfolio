@@ -53,10 +53,10 @@ export default function Hero({ data }: HeroProps) {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 0.03, scale: 1 }}
         transition={{ delay: 0.5, duration: 1.5, ease: "easeOut" }}
-        className="absolute -right-20 top-1/2 -translate-y-1/2 select-none pointer-events-none"
+        className="absolute right-1 top-1/2 -translate-y-1/2 select-none pointer-events-none"
         style={{
           fontFamily: "var(--font-display)",
-          fontSize: "clamp(200px, 30vw, 400px)",
+          fontSize: "clamp(200px, 30vw, 560px)",
           fontWeight: 400,
           lineHeight: 1,
           color: "var(--color-foreground)",
@@ -89,7 +89,7 @@ export default function Hero({ data }: HeroProps) {
         />
       </motion.div>
 
-      <div className="w-full flex items-center gap-12 max-md:flex-col relative z-10">
+      <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto flex items-center gap-12 max-md:flex-col relative z-10">
         {/* Left content */}
         <div className="flex-1 max-w-2xl">
           {/* Name */}
@@ -119,7 +119,7 @@ export default function Hero({ data }: HeroProps) {
           <div className="mb-6">
             <div className="overflow-hidden">
               <motion.h1
-                className="text-4xl md:text-6xl lg:text-[72px] leading-[0.9] tracking-tight"
+                className="text-4xl md:text-6xl lg:text-[clamp(72px,5vw,160px)] leading-[0.9] tracking-tight"
                 style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
               >
                 {(data?.headline?.[0] || "Building").split(" ").map((word, i) => (
@@ -139,7 +139,7 @@ export default function Hero({ data }: HeroProps) {
 
             <div className="overflow-hidden mt-1">
               <motion.h1
-                className="text-4xl md:text-6xl lg:text-[72px] leading-[0.9] tracking-tight gradient-text"
+                className="text-4xl md:text-6xl lg:text-[clamp(72px,5vw,160px)] leading-[0.9] tracking-tight gradient-text"
                 style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
               >
                 {(data?.headline?.[1] || "the future").split(" ").map((word, i) => (
@@ -159,7 +159,7 @@ export default function Hero({ data }: HeroProps) {
 
             <div className="overflow-hidden mt-1">
               <motion.h1
-                className="text-4xl md:text-6xl lg:text-[72px] leading-[0.9] tracking-tight"
+                className="text-4xl md:text-6xl lg:text-[clamp(72px,5vw,160px)] leading-[0.9] tracking-tight"
                 style={{
                   fontFamily: "var(--font-serif)",
                   fontStyle: "italic",
@@ -208,13 +208,13 @@ export default function Hero({ data }: HeroProps) {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="flex gap-4 items-center"
+            className="flex flex-wrap items-center gap-3 md:gap-4"
           >
             <motion.a
               href={data?.ctaPrimary?.link || "#projects"}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="group px-7 py-3.5 rounded-full text-sm font-medium flex items-center gap-2 transition-colors duration-300"
+              className="group px-5 py-3 md:px-7 md:py-3.5 rounded-full text-sm font-medium flex items-center gap-2 transition-colors duration-300"
               style={{
                 background: "var(--color-foreground)",
                 color: "var(--color-background)",
@@ -232,7 +232,7 @@ export default function Hero({ data }: HeroProps) {
               href={data?.ctaSecondary?.link || "#contact"}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="px-7 py-3.5 rounded-full text-sm font-medium border transition-all duration-300 hover:border-foreground"
+              className="px-5 py-3 md:px-7 md:py-3.5 rounded-full text-sm font-medium border transition-all duration-300 hover:border-foreground"
               style={{
                 borderColor: "var(--color-border)",
                 fontFamily: "var(--font-mono)",
@@ -250,13 +250,13 @@ export default function Hero({ data }: HeroProps) {
           transition={{ delay: 1, duration: 1, ease: [0.23, 1, 0.32, 1] as [number, number, number, number] }}
           className="flex-shrink-0 max-md:mx-auto max-md:mt-8"
         >
-          <div className="image-hacker relative w-full max-w-[200px] md:max-w-none md:w-[320px] aspect-[3/4]">
+          <div className="image-hacker relative w-full max-w-[200px] md:max-w-none md:w-[clamp(320px,17vw,520px)] aspect-[3/4]">
             <Image
               src={data?.image || "/my-pix/image-3.jpeg"}
               alt={data?.name || "Muhammad Abbas"}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 200px, 320px"
+              sizes="(max-width: 768px) 200px, (max-width: 2560px) 440px, 520px"
               preload
             />
             {/* Scan line overlay effect */}

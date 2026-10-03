@@ -23,10 +23,10 @@ export default function Navigation({ sections, activeSection, onNavigate }: Navi
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 2.5, duration: 0.8, ease: [0.23, 1, 0.32, 1] as [number, number, number, number] }}
-      className="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-5 max-md:hidden"
+      className="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-5 2xl:gap-6 max-md:hidden"
     >
       {/* Progress line behind dots */}
-      <div className="absolute right-[3px] top-0 bottom-0 w-[2px] rounded-full overflow-hidden"
+      <div className="nav-progress absolute top-0 bottom-0 rounded-full overflow-hidden"
         style={{ background: "var(--color-border)" }}>
         <motion.div
           className="w-full rounded-full"
@@ -42,12 +42,12 @@ export default function Navigation({ sections, activeSection, onNavigate }: Navi
         <button
           key={section}
           onClick={() => onNavigate(i)}
-          className="group flex items-center gap-4 relative"
+          className="group flex items-center gap-4 2xl:gap-5 relative"
           aria-label={`Go to ${sectionLabels[section] || section}`}
         >
           {/* Label */}
           <span
-            className={`text-[11px] uppercase tracking-wider transition-all duration-300 font-medium ${
+            className={`text-[11px] 2xl:text-[13px] uppercase tracking-wider transition-all duration-300 font-medium ${
               i === activeSection
                 ? "opacity-100 translate-x-0"
                 : "opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0"

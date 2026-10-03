@@ -81,7 +81,7 @@ export default function About({ data }: AboutProps) {
         style={{ maskImage: "radial-gradient(ellipse at center, black 30%, transparent 70%)" }}
       />
 
-      <div className="w-full flex gap-8 max-md:flex-col relative z-10">
+      <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto flex gap-8 max-md:flex-col relative z-10">
         {/* Left - Text content + image */}
         <div className="flex-[3] max-w-2xl">
           <motion.p
@@ -99,7 +99,7 @@ export default function About({ data }: AboutProps) {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="text-4xl md:text-5xl lg:text-6xl mb-3 leading-[0.9]"
+            className="text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl mb-3 leading-[0.9]"
             style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
           >
             {data?.heading?.[0] || "Code. Intelligence."}
@@ -112,7 +112,7 @@ export default function About({ data }: AboutProps) {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="text-muted leading-[1.7] mb-3 text-[15px]"
+            className="text-muted leading-[1.7] mb-3 text-[0.9375rem]"
           >
             {data?.paragraphs?.[0] || "I'm a full stack developer with deep expertise in AI engineering and cybersecurity. I build scalable, intelligent applications while ensuring they stand resilient against modern threats."}
           </motion.p>
@@ -122,7 +122,7 @@ export default function About({ data }: AboutProps) {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="text-muted leading-[1.7] mb-5 text-[15px]"
+            className="text-muted leading-[1.7] mb-5 text-[0.9375rem]"
           >
             {data?.paragraphs?.[1] || "From architecting microservices to training neural networks, from penetration testing to building AI-powered tools — I thrive at the edges where disciplines collide."}
           </motion.p>
@@ -135,13 +135,13 @@ export default function About({ data }: AboutProps) {
             variants={fadeUp}
             className="mb-6"
           >
-            <div className="image-artist relative" style={{ width: "100%", maxWidth: "480px", height: "160px" }}>
+            <div className="image-artist relative" style={{ width: "100%", maxWidth: "clamp(480px, 30vw, 760px)", height: "clamp(160px, 11vw, 300px)" }}>
               <Image
                 src={data?.image || "/my-pix/image-2.jpeg"}
                 alt="Workspace"
                 fill
                 className="object-cover"
-                sizes="480px"
+                sizes="(max-width: 768px) 480px, 760px"
               />
             </div>
           </motion.div>
@@ -157,7 +157,7 @@ export default function About({ data }: AboutProps) {
               download
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-sm font-medium border transition-all duration-300 hover:border-foreground group"
+              className="inline-flex items-center gap-3 px-5 py-3 md:px-7 md:py-3.5 rounded-full text-sm font-medium border transition-all duration-300 hover:border-foreground group"
               style={{
                 borderColor: "var(--color-border)",
                 fontFamily: "var(--font-mono)",
@@ -213,7 +213,7 @@ export default function About({ data }: AboutProps) {
                   style={{ color: "var(--color-muted)" }}
                 />
                 <div
-                  className="text-xl md:text-2xl font-bold mb-0.5"
+                  className="text-xl md:text-2xl 2xl:text-3xl font-bold mb-0.5"
                   style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
                 >
                   <CountUp target={stat.value} delay={0.5 + i * 0.15} />

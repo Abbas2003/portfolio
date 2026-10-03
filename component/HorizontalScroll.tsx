@@ -133,30 +133,26 @@ export default function HorizontalScroll({ children }: { children: React.ReactNo
     return () => container.removeEventListener("scroll", handleScroll);
   }, [isMobile]);
 
-  // Sync active section on scroll — mobile (IntersectionObserver)
+  // Sync active section on scroll — mobile (viewport mid-line detection)
+  // Note: ratio-based IntersectionObserver fails for sections taller than
+  // the viewport (e.g. Projects) — mid-line check works for any height.
   useEffect(() => {
     if (!isMobile) return;
 
-    const observers: IntersectionObserver[] = [];
+    const handleScroll = () => {
+      const mid = window.innerHeight * 0.5;
+      let active = 0;
+      sections.forEach((id, i) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (el.getBoundingClientRect().top <= mid) active = i;
+      });
+      setActiveSection(active);
+    };
 
-    sections.forEach((section, i) => {
-      const el = document.getElementById(section);
-      if (!el) return;
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.4) {
-            setActiveSection(i);
-          }
-        },
-        { threshold: 0.4 }
-      );
-
-      observer.observe(el);
-      observers.push(observer);
-    });
-
-    return () => observers.forEach((o) => o.disconnect());
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [isMobile]);
 
   return (

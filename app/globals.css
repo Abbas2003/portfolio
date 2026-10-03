@@ -44,6 +44,19 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Scale typography, spacing & visuals up on large screens */
+@media (min-width: 1920px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 2560px) {
+  html {
+    font-size: 20px;
+  }
+}
+
 body {
   background: var(--color-background);
   color: var(--color-foreground);
@@ -114,7 +127,7 @@ body::before {
     width: 100%;
     height: auto;
     min-height: auto;
-    padding: 2rem 1.25rem;
+    padding: 2rem 1.25rem 6.5rem;
   }
 
   .section-panel-scrollable {
@@ -231,6 +244,44 @@ body::before {
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   cursor: pointer;
   position: relative;
+}
+
+.nav-progress {
+  right: 3px;
+  width: 2px;
+}
+
+/* Bigger, more visible nav dots on large screens */
+@media (min-width: 1536px) {
+  .nav-dot {
+    width: 13px;
+    height: 13px;
+  }
+
+  .nav-progress {
+    right: 5px;
+    width: 3px;
+  }
+
+  .nav-dot.active::after {
+    inset: -5px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .nav-dot {
+    width: 16px;
+    height: 16px;
+  }
+
+  .nav-progress {
+    right: 6.5px;
+    width: 3px;
+  }
+
+  .nav-dot.active::after {
+    inset: -7px;
+  }
 }
 
 .nav-dot.active {
