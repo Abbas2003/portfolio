@@ -5,7 +5,7 @@ const ADMIN_SECRET = new TextEncoder().encode(
   process.env.JWT_SECRET || "portfolio-admin-secret-key-change-in-production-2026"
 );
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (pathname.startsWith("/admin")) {
